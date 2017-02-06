@@ -1,0 +1,10 @@
+- name: "-------------- Install epel-release repo ----------------------------"
+  yum: name=epel-release state=present
+- name: "common packages"
+  yum: name={{ item }} state=present
+  with_items:
+    - htop
+    - wget
+    - vim
+    - git
+    - tree

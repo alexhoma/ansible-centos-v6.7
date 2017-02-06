@@ -1,0 +1,7 @@
+---
+- name: "--------------------Llamada a playbook apache---------------------"
+  hosts: "databases"
+  become: true
+  become_user: root
+  roles:
+    - mysql

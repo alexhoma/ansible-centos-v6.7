@@ -1,0 +1,11 @@
+  - name: "----------------------------------Install mysql---------------------------"
+    yum: pkg=mysql-server state=present
+
+  - name: "Restart mysql"
+    service: name=mysqld state=started
+
+  - name: "Add configuraction file"
+    copy: src=files/my.cnf dest=~/.my.cnf
+
+
+
