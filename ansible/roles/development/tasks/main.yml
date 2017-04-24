@@ -1,4 +1,4 @@
-- name: "-------------- Install epel-release repo ----------------------------"
+- name: "-------------------- Install epel-release repo ----------------------"
   yum: name=epel-release state=present
 - name: "common packages"
   yum: name={{ item }} state=present

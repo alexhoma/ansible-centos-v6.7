@@ -1,4 +1,4 @@
-  - name: "----------------------------------Install mysql---------------------------"
+  - name: "------------------------- Install MySQL ---------------------------"
     yum: pkg=mysql-server state=present
 
   - name: "Restart mysql"
@@ -7,5 +7,14 @@
   - name: "Add configuraction file"
     copy: src=files/my.cnf dest=~/.my.cnf
 
+  - name: "Install the Python MySQLdb module"
+    yum: name=MySQL-python
 
+  - name: "Create Performance dataset file"
+    copy: src=files/dataset.sql dest=/tmp/dataset.sql
 
+  - name: "Create a [mpwar_performance_blog] database"
+    mysql_db:
+      name: mpwar_performance_blog
+      state: import
+      target: /tmp/dataset.sql

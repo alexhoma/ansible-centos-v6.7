@@ -1,4 +1,4 @@
-  - name: "----------------- Install PHP7------------------------"
+  - name: "---------------------- Install PHP7 ------------------------"
     yum: name={{ item }} state=present
     with_items:
       - php70w
@@ -6,21 +6,20 @@
       - php70w-pdo
       - php70w-mysql
 
-
-  - name: "install composer - check if installed"
+  - name: "Install composer - check if installed"
     stat: "path=/usr/local/bin/composer"
     register: composer_bin
 
-  - name: "install composer - download"
+  - name: "Install composer - download"
     get_url:
       url: https://getcomposer.org/installer
       dest: /tmp/composer_installer.php
     when: not composer_bin.stat.exists
 
-  - name: "install composer - execution"
+  - name: "Install composer - execution"
     shell: /usr/bin/php /tmp/composer_installer.php --install-dir=/usr/local/bin --filename=composer
     when: not composer_bin.stat.exists
 
-  - name: "install composer - clean up"
+  - name: "Install composer - clean up"
     file: path=/tmp/composer_installer.php state=absent
     when: not composer_bin.stat.exists

@@ -1,11 +1,11 @@
-- name: "------------------------- Install Apache--------------------------------"
+- name: "------------------------- Install Apache ---------------------------"
   yum: pkg=httpd state=present
 
-- name: "Fichero de cobfiguración"
+- name: "Virtualhost config file"
   copy: src=files/vhost.conf dest=/etc/httpd/conf.d/vhost.conf
 
-- name: "Create default PHP"
-  copy: src=files/info.php dest=/var/www/html/info.php
-  
-- name: "restart Apache"
+- name: "Create default PHP info"
+  copy: src=files/index.php dest=/var/www/html/index.php
+
+- name: "Restart Apache"
   service: name=httpd state=restarted
